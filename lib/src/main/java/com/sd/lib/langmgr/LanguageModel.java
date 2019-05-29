@@ -43,7 +43,7 @@ public class LanguageModel
     private LanguageModel(String language, String country, String name)
     {
         if (TextUtils.isEmpty(language) || TextUtils.isEmpty(name))
-            throw new IllegalArgumentException("language or name is empty");
+            throw new IllegalArgumentException("language or name is empty when create LanguageModel");
 
         if (country == null)
             country = "";

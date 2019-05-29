@@ -63,7 +63,7 @@ public class LanguageManager
     public void register(Locale locale, LanguageModel languageModel)
     {
         if (locale == null || languageModel == null)
-            throw new IllegalArgumentException("local or languageModel is null");
+            throw new IllegalArgumentException("local or languageModel is null when register");
 
         MAP_LOCALE_LANGUAGE.put(locale, languageModel);
         MAP_LANGUAGE.put(languageModel, null);
