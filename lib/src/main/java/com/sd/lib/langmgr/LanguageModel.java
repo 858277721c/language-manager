@@ -83,13 +83,7 @@ public class LanguageModel
         final Locale locale = toLocale();
 
         final Configuration configuration = resources.getConfiguration();
-        if (Build.VERSION.SDK_INT >= 17)
-        {
-            configuration.setLocale(locale);
-        } else
-        {
-            configuration.locale = locale;
-        }
+        setLocale(configuration, locale);
 
         resources.updateConfiguration(configuration, resources.getDisplayMetrics());
     }
@@ -124,7 +118,7 @@ public class LanguageModel
         LanguageModel model = queryModel(context);
         if (model == null)
         {
-            final Locale locale = context.getResources().getConfiguration().locale;
+            final Locale locale = getLocale(context.getResources().getConfiguration());
             model = LanguageManager.getInstance().getLanguageModel(locale);
         } else
         {
@@ -235,6 +229,37 @@ public class LanguageModel
         } catch (Exception e)
         {
             return null;
+        }
+    }
+
+    private static Locale getLocale(Configuration configuration)
+    {
+        Locale locale = null;
+
+        if (Build.VERSION.SDK_INT >= 24)
+        {
+            try
+            {
+                locale = configuration.getLocales().get(0);
+            } catch (Exception e)
+            {
+            }
+        }
+
+        if (locale == null)
+            locale = configuration.locale;
+
+        return locale;
+    }
+
+    private static void setLocale(Configuration configuration, Locale locale)
+    {
+        if (Build.VERSION.SDK_INT >= 17)
+        {
+            configuration.setLocale(locale);
+        } else
+        {
+            configuration.locale = locale;
         }
     }
 }
