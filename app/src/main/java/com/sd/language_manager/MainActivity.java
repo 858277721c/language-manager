@@ -20,11 +20,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         if (LanguageModel.SIMPLIFIED_CHINESE.equals(model))
+        {
             ((TextView) (findViewById(R.id.btn_simplified_chinese))).setTextColor(Color.RED);
-        else if (LanguageModel.TRADITIONAL_CHINESE.equals(model))
+        } else if (LanguageModel.TRADITIONAL_CHINESE.equals(model))
+        {
             ((TextView) (findViewById(R.id.btn_traditional_chinese))).setTextColor(Color.RED);
-        else if (LanguageModel.ENGLISH.equals(model))
+        } else if (LanguageModel.ENGLISH.equals(model))
+        {
             ((TextView) (findViewById(R.id.btn_english))).setTextColor(Color.RED);
+        }
     }
 
     @Override
