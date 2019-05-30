@@ -32,7 +32,6 @@ public class LanguageModel
 
     private final String mLanguage;
     private final String mCountry;
-
     private final String mName;
 
     public LanguageModel(Locale locale, String name)
@@ -127,8 +126,8 @@ public class LanguageModel
                 return model;
             } else
             {
-                // 保存的对象已经不在注册列表中了，清空保存的对象，并返回默认的处理对象
-                clearModel(context);
+                // 保存的对象已经不在注册列表中了，删除保存的对象，并返回默认的处理对象
+                deleteModel(context);
                 return LanguageManager.getInstance().getDefaultLanguageModel();
             }
         }
@@ -188,12 +187,12 @@ public class LanguageModel
     }
 
     /**
-     * 清空本地保存的对象
+     * 删除本地保存的对象
      *
      * @param context
      * @return
      */
-    private static boolean clearModel(Context context)
+    private static boolean deleteModel(Context context)
     {
         final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         if (sharedPreferences.contains(PERSISTENT_KEY))

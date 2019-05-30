@@ -83,7 +83,7 @@ public class LanguageManager
     }
 
     /**
-     * 返回目标语言对应的处理对象
+     * 返回目标语言对应的处理对象，如果未找到则返回默认的处理对象{@link #getDefaultLanguageModel()}
      *
      * @param locale 目标语言
      * @return
